@@ -23,7 +23,7 @@ services:
                    - default
 
              volumes:
-                   - db_data="/home/brick/Documents/phpipam/db_ipam:/var/lib/mysql"
+                   - /home/brick/Documents/phpipam/db_ipam:/var/lib/mysql
 
 
              #El comando restart permite que si el contenedor se detiene por alguna extrana 
@@ -32,7 +32,7 @@ services:
              restart: always
 
              volumes:
-                   - db_data
+                   - /home/brick/Documents/phpipam/db_ipam:/var/lib/mysql
       
        ipam:
             depends_on:
