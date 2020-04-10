@@ -1,0 +1,54 @@
+#Este es un docker file para ejecutar completo el ambiente de phpipam
+
+#establecemos la version que se utilizara
+version: '3'
+
+#Se establecen los servicios que tienen que ser instalados, en este caso se utilizaran
+#mysql como base de datos y llamaremos el contenedor de phpipam ya otorgador por natesubra
+
+services:
+       mysql:
+             image: mariadb:10
+             container_name: bd_ipam_node1
+
+
+            #Las variables descritas a continuacion nos permitira definir parametros especificos que 
+            #seran usuados para establecer contrasenas, asignar redes y crear volumenes persistentes
+             environment:
+                   - MYSQL_ROOT_PASSWORD=delete
+             
+             networks:
+                   - default
+
+             volumes:
+                   - /home/brick/Documents/phpipam/db_ipam:/var/lib/mysql
+
+
+             #El comando restart permite que si el contenedor se detiene por alguna extrana 
+             #razon, este se reinicie evitando que tengamos algun problema de alta disponibilidad
+
+             restart: always
+
+             volumes:
+                    #- source:/home/brick/phpipam/db_ipam
+                    - /home/brick/Documents/phpipam/db_ipam:/var/lib/mysql
+      
+       ipam:
+            depends_on:
+                  - mysql
+            image: pierrecdn/phpipam
+            
+            #environment nos permitira crear las variables que seran usadas para la conexion 
+            #con el servidor
+            environment: 
+                  - MYSQL_ENV_MYSQL_USER=root
+                  - MYSQL_ENV_MYSQL_ROOT_PASSWORD=delete
+                  - MYSQL_ENV_MYSQL_HOST=mysql
+            ports:
+                  - "80:80"
+            restart: always
+
+networks:
+        default:
+            external:
+                  name: phpipam
