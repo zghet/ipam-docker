@@ -1,4 +1,6 @@
+
 #Este es un docker file para ejecutar completo el ambiente de phpipam
+#docker-compose -f phpipam.yml up -d
 
 #establecemos la version que se utilizara
 version: '3'
@@ -21,7 +23,7 @@ services:
                    - default
 
              volumes:
-                   - /home/brick/Documents/phpipam/db_ipam:/var/lib/mysql
+                   - db_data="/home/brick/Documents/phpipam/db_ipam:/var/lib/mysql"
 
 
              #El comando restart permite que si el contenedor se detiene por alguna extrana 
@@ -30,8 +32,7 @@ services:
              restart: always
 
              volumes:
-                    #- source:/home/brick/phpipam/db_ipam
-                    - /home/brick/Documents/phpipam/db_ipam:/var/lib/mysql
+                   - db_data
       
        ipam:
             depends_on:
