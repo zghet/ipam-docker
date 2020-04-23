@@ -2,9 +2,10 @@
 #Este es un docker file para ejecutar completo el ambiente de phpipam
 #docker-compose -f phpipam.yml up -d
 #agregamos linea de prueba para ejecutar mi docker-compose con jenkins
-
+#Segunda linea de prueba para jenkins
 #establecemos la version que se utilizara
-version: '3'
+
+version: '2'
 
 #Se establecen los servicios que tienen que ser instalados, en este caso se utilizaran
 #mysql como base de datos y llamaremos el contenedor de phpipam ya otorgador por natesubra
