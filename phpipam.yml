@@ -3,6 +3,8 @@
 #docker-compose -f phpipam.yml up -d
 #agregamos linea de prueba para ejecutar mi docker-compose con jenkins
 
+#SE CAMBIO TODO ESTO
+
 #establecemos la version que se utilizara
 
 version: '2'
