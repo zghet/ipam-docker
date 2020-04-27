@@ -1,10 +1,6 @@
 
 #Este es un docker file para ejecutar completo el ambiente de phpipam
 #docker-compose -f phpipam.yml up -d
-#agregamos linea de prueba para ejecutar mi docker-compose con jenkins
-
-#Volvemos a realizar cambios
-
 #establecemos la version que se utilizara
 
 version: '2'
